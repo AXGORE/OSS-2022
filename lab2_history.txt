@@ -1,0 +1,53 @@
+total 4
+-rw-r----- 1 root   alexey 5 сен 28 16:53 file
+----rw-rw- 1 alexey alexey 0 сен 28 16:59 test1
+-rw------- 1 alexey alexey 0 сен 28 17:00 test2
+drw-rw-rw-  2 alexey alexey  4096 сен 28 16:57  dir
+
+
+./dir:
+ls: невозможно получить доступ к './dir/new_file': Отказано в доступе
+
+  401  mkdir test 
+  402  cd test/
+  403  TOUCH FILE 
+  404  touch file
+  405  ls -l
+  406  chmod 000 file
+  407  ls -l
+  408  cat fi;e
+  409  cat file
+  410  chmod 11 file
+  411  echo "test"> file
+  412  chmod 111 file
+  413  ls -l
+  414  chmod 200 file
+  415  ls -l
+  416  echo "test"> file
+  417  cat file
+  418  chmod 210 file
+  419  ls -l
+  420  chmod 240 file
+  421  ll
+  422  cat file
+  423  chmod 640 file
+  424  ll
+  425  cat file
+  426  cd ..
+  427  mkdir dir
+  428  touch ./dir/new_file
+  429  ls ./dir/
+  430  chmod 666 dir
+  431  cat ./dir/new_file 
+  432  chown root ./test/file 
+  433  umask 600
+  434  touch ./test/test1
+  435  ll ./test/test1
+  436  umask 066
+  437  touch ./test/test2
+  438  ll ./test/test2
+  439  umask 000
+  440  cat ./test/file 
+  441  ls -LR
+  442  sudo su 
+  443  history
