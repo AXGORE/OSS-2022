@@ -7,71 +7,71 @@
 Используя команду `find`:
 
 1. Найдите все файлы и каталоги, имя которых содержит слово `pass`, поиск начните с корневого каталога.
-find / -name "*pass*"
+    find / -name "*pass*"
 1. Найдите все файлы и каталоги, имя которых содержит слово `pass` без учёта регистра, поиск начните с корневого каталога.
-find / -iname "*pass*"
+    find / -iname "*pass*"
 1. Найдите все файлы и каталоги, имя которых содержит слово `pass`, ограничив глубину поиска одним каталогом, поиск начните с корневого каталога.
-find / -maxdepth 1  -name "*pass*"
+    find / -maxdepth 1  -name "*pass*"
 1. Найдите все файлы и каталоги, имена которых оканчиваются на `.bin`. Поиск необходимо выполнить в каталоге `/home`.
-find / -maxdepth 1  -name "*.bin"
+    find / -maxdepth 1  -name "*.bin"
 1. Найдите все **файлы** (и только файлы) с расширением `bak` и удалите их.
-sudo find / -type f -name "*.bak" -exec rm -f {} \;
+    sudo find / -type f -name "*.bak" -exec rm -f {} \;
 1. Найдите все **файлы** (и только файлы) с расширениями `txt` и `sh`.
- sudo find / -type f -name "*.txt" -or -name "*.sh"
+    sudo find / -type f -name "*.txt" -or -name "*.sh"
 1. Найдите все **файлы** (и только файлы) в текущем каталоге и выведите **только** имя файла (без каталога), владельца, группу владельца, количество жёстких ссылок на этот файл и его размер в байтах.
- find ./ -type f -printf "%f %u %g %n %b \n"
+    find ./ -type f -printf "%f %u %g %n %b \n"
 1. Найдите все пустые **каталоги** в текущем каталоге.
-find ./ -type d -empty
+    find ./ -type d -empty
 1. Найдите все пустые **каталоги** в текущем каталоге и удалите их.
-find ./ -type d -empty -exec rm -r {} \;
+    find ./ -type d -empty -exec rm -r {} \;
 1. Найдите и удалите все пустые **файлы** (и только файлы).
-find ./ -type f -empty -exec rm -f {} \;
+    find ./ -type f -empty -exec rm -f {} \;
 1. Найдите все **файлы** (и только файлы) в текущем каталоге, на которые есть хотя бы одна жёсткая ссылка.
-sudo find / -type f -links +1
+    sudo find / -type f -links +1
 1. Найдите файлы и каталоги в каталоге `/etc`, **не** принадлежащие пользователю `root`.
-sudo find /etc -maxdepth 1 -not -user root
+    sudo find /etc -maxdepth 1 -not -user root
 1. Найдите все **файлы** (и только файлы), у которых **нет** расширения `sh`.
-sudo find / -type f -not -name "*.sh"
+    sudo find / -type f -not -name "*.sh"
 1. Найдите все **файлы** (и только файлы), у которых количество жёстких ссылок более двух.
-sudo find / -type f -links +2
+    sudo find / -type f -links +2
 1. Найдите все **файлы** (и только файлы) в каталоге `/usr/bin`, последний доступ к которым осуществлялся более трёх месяцев назад.
-sudo find /usr/bin -type f -atime +90
+    sudo find /usr/bin -type f -atime +90
 1. Найдите все **файлы** (и только файлы) в каталогах `/usr/bin` и `/usr/share`, созданные или изменённые в течении последних 10 дней.
-sudo find /usr/bin /usr/share/ -type f -mtime -10
+    sudo find /usr/bin /usr/share/ -type f -mtime -10
 1. Найдите и удалите все **файлы** (и только файлы) в каталоге `/tmp`, которые не менялись более двух недель
-sudo find /tmp -type f -ctime +14 -exec rm -f {} \;
+    sudo find /tmp -type f -ctime +14 -exec rm -f {} \;
 1. Найдите все **файлы** (и только файлы) в каталоге `/usr/bin` с установленным флагом suid/sgid.
-find /usr/bin -type f -perm /u+s,g+s
+    find /usr/bin -type f -perm /u+s,g+s
 Используя команды `find` и `xargs` или параметр `-exec` команды `find`:
 
 1. Найдите все **файлы** (и только файлы) с расширением `txt` и подсчитайте количество строк во всех этих файлах.
-sudo find / -type f -name "*.txt" | xargs wc -l
+    sudo find / -type f -name "*.txt" | xargs wc -l
 1. Найдите все каталоги с названием `.svn` и удалите их, включая содержимое этих каталогов, попутно выводя список удалённых файлов на экран.
-sudo find / -type d -name ".svn" -delete -print
+    sudo find / -type d -name ".svn" -delete -print
 1. Найдите все **файлы** (и только файлы) с расширением `sh` и добавьтем им право на исполнение.
-sudo find / -type d -name "*.sh" | xargs chmod +1
+    sudo find / -type d -name "*.sh" | xargs chmod +1
 1. Найдите все **файлы** (и только файлы) с расширением `conf` в каталоге `/etc` и подсчитайте их суммарный размер, используя команду du.
-sudo find /etc -type d -name "*.conf" | du -c
+    sudo find /etc -type d -name "*.conf" | du -c
 Протестируйте команды, которые вы написали выше, для файлов и каталогов, в именах которых содержатся пробелы и специальные символы, такие как `!` и `&`.
 
 Используя команду `grep`:
 
 1. Из файла `/var/log/messages` вывести строки, содержащие ключевое слово `ERROR`, без учёта регистра.
-grep -i "ERROR"/var/log/messages 
+    grep -i "ERROR"/var/log/messages 
 1. Из файла `/var/log/messages` вывести **количество** строк, **не** содержащих ключевое слово `ERROR`, без учёта регистра.
-grep -icv "ERROR" /var/log/messages 
+    grep -icv "ERROR" /var/log/messages 
 1. Из файла `/var/log/messages` вывести строки, содержащие **только слово `ERROR` целиком**, с учётом регистра.
-grep  "^ERROR$" /var/log/messages
+    grep  "^ERROR$" /var/log/messages
 1. Вывести количество строк из файла `/etc/group`, совпадающих с шаблоном `wheel`.
-grep -c "wheel" /etc/group
+    grep -c "wheel" /etc/group
 1. Найти во всех файлах из текущего каталога и вложенных подкаталогов строки, содержащие шаблон `#!bin/bash`.
-grep -r "#!bin/bash"
+    grep -r "#!bin/bash"
 1. Изменить предыдущую команду таким образом, чтобы она выводила дополнительные 10 строк после каждого найденного шаблона.
-grep -A 10 -r "#!bin/bash" 
+    grep -A 10 -r "#!bin/bash" 
 1. Найти во всех файлах с расширением `sh` из текущего каталога и вложенных подкаталогов строки, содержащие слово `echo` **целиком**. В выводе команды `grep` найденные слова выделите цветом.
-find -type f -name "*.sh" | xargs grep "^echo$" --color=auto
+    find -type f -name "*.sh" | xargs grep "^echo$" --color=auto
 1. Измените предыдущую команду таким образом, чтобы команда grep отображала также имя файла и номер строки, в которой было обнаружено совпадение с шаблоном.
-find -type f -name "*.sh" | xargs grep -n "^echo$" --color=auto
+    find -type f -name "*.sh" | xargs grep -n "^echo$" --color=auto
 # Отчёт по лабораторной работе
 
 Скопируйте данную лабораторную работу в виде файла Markdown на свой компьютер, и под каждым заданием напишите ответ.
