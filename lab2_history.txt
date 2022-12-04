@@ -1,12 +1,15 @@
 total 4
--rw-r----- 1 root   alexey 5 сен 28 16:53 file
-----rw-rw- 1 alexey alexey 0 сен 28 16:59 test1
--rw------- 1 alexey alexey 0 сен 28 17:00 test2
-drw-rw-rw-  2 alexey alexey  4096 сен 28 16:57  dir
+drw-r--r-- 2 alexey alexey  4096 сен 28 16:57  dir
+-r--r----- 1 root   alexey 5 сен 28 16:53 file
+-rw------- 1 alexey alexey 0 сен 28 16:59 file1
+-rw-rw-rw- 1 alexey alexey 0 сен 28 17:00 file2
+
 
 
 ./dir:
-ls: невозможно получить доступ к './dir/new_file': Отказано в доступе
+ls: cannot access './dir/new_file': Permission denied
+total 0
+-????????? ? ? ? ?            ? new_file
 
   401  mkdir test 
   402  cd test/
